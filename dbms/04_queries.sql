@@ -93,6 +93,29 @@ JOIN parcels p ON p."studentId" = s.id
 GROUP BY s.hostel
 ORDER BY total_parcels DESC;
 
+-- @R9
+-- READ: Overdue parcels alert — uncollected parcels waiting at the gate for more than 48 hours (JOIN)
+SELECT p.id, p."lookupNumber", p.carrier, p."createdAt",
+       s."enrollmentNo", s.name AS student_name, s.hostel, s.room, s.phone, s.email,
+       u.name AS logged_by_guard
+FROM parcels p
+JOIN students s ON s.id = p."studentId"
+JOIN users u    ON u.id = p."loggedById"
+WHERE p.status = 'RECEIVED'
+  AND p."createdAt" < CURRENT_TIMESTAMP - interval '48 hours'
+ORDER BY p."createdAt" ASC;
+
+-- @R10
+-- READ: Courier carrier volume and completion rate breakdown across campus hostels (JOIN)
+SELECT p.carrier,
+       count(p.id) AS deliveries,
+       count(DISTINCT s.id) AS unique_students,
+       count(p.id) FILTER (WHERE p.status = 'PICKED_UP') AS picked_up_count
+FROM parcels p
+JOIN students s ON s.id = p."studentId"
+GROUP BY p.carrier
+ORDER BY deliveries DESC;
+
 
 -- @END
 ROLLBACK;
