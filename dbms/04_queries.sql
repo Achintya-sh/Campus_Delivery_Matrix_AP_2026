@@ -116,6 +116,65 @@ JOIN students s ON s.id = p."studentId"
 GROUP BY p.carrier
 ORDER BY deliveries DESC;
 
+-- @W1
+-- WRITE: Guard logs a new incoming parcel at the campus gate for a student
+INSERT INTO parcels (
+    id, "lookupNumber", carrier, "trackingNumber", status, notes,
+    "studentId", "studentEnrollmentNo", "loggedById", "pickedUpAt", "createdAt", "updatedAt"
+)
+VALUES (
+    '99999999-5346-4ee7-9b5f-417b4bfdec1f',
+    'P-999',
+    'BlueDart',
+    'BD-2026-88412',
+    'RECEIVED',
+    'Fragile electronics box at Gate 1',
+    '796c9cda-258e-4823-8d18-88ebbcf2902c',
+    'RU2025CS001',
+    '15a905d0-f3da-439d-9de9-46bc7ecf36da',
+    NULL,
+    CURRENT_TIMESTAMP,
+    CURRENT_TIMESTAMP
+);
+
+-- @W2
+-- WRITE: Guard marks a parcel as PICKED_UP when the student presents their lookupNumber
+UPDATE parcels
+SET status = 'PICKED_UP',
+    "pickedUpAt" = CURRENT_TIMESTAMP,
+    "updatedAt"  = CURRENT_TIMESTAMP
+WHERE "lookupNumber" = 'P-101';
+
+-- @W3
+-- WRITE: Admin registers a new student resident in the campus directory
+INSERT INTO students (
+    id, "enrollmentNo", name, hostel, room, phone, email, "createdAt"
+)
+VALUES (
+    '88888888-258e-4823-8d18-88ebbcf2902c',
+    'RU2025CS999',
+    'Vikramaditya Rao',
+    'Aravali Hostel',
+    'A-309',
+    '9876501234',
+    'vikram.rao@nst.rishihood.edu.in',
+    CURRENT_TIMESTAMP
+);
+
+-- @W4
+-- WRITE: Student or Admin updates a student's hostel room allocation and phone number
+UPDATE students
+SET hostel = 'Shivalik Hostel',
+    room   = 'S-402',
+    phone  = '9811122233'
+WHERE "enrollmentNo" = 'RU2025CS002';
+
+-- @W5
+-- WRITE: Guard appends a storage shelf note to an existing parcel record
+UPDATE parcels
+SET notes       = 'Moved to Rack B-2 (Heavy parcel shelf)',
+    "updatedAt" = CURRENT_TIMESTAMP
+WHERE id = 'f82f0378-5346-4ee7-9b5f-417b4bfdec1f';
 
 -- @END
 ROLLBACK;

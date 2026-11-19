@@ -15,3 +15,4 @@
 - `dbms/01_normalization.md`: Normalization (`UNF → 1NF → 2NF → 3NF → BCNF`) and Functional Dependencies
 - `dbms/02_er_diagram.png`: Entity-Relationship (ER) Diagram
 - `dbms/03_schema.sql`: PostgreSQL `CREATE TABLE` DDL with keys, constraints, and indexes
+- `dbms/04_queries.sql`: 10 READ and 5 WRITE application SQL queries with JOINs (CP3)
