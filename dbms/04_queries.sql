@@ -47,6 +47,52 @@ WHERE p.status = 'RECEIVED'
 ORDER BY p."createdAt" ASC
 LIMIT 50;
 
+-- @R5
+-- READ: Student parcel history feed (all parcels for a student ordered newest first, with logging guard) (JOIN)
+SELECT p.id, p."lookupNumber", p.carrier, p."trackingNumber", p.status, p.notes,
+       p."createdAt", p."pickedUpAt",
+       s.name AS student_name, s."enrollmentNo",
+       u.name AS logged_by_name
+FROM parcels p
+JOIN students s ON s.id = p."studentId"
+JOIN users u    ON u.id = p."loggedById"
+WHERE s."enrollmentNo" = 'RU2025CS001'
+ORDER BY p."createdAt" DESC;
+
+-- @R6
+-- READ: Guard search for students by partial name or enrollment number with their awaiting parcel count (LEFT JOIN)
+SELECT s.id, s."enrollmentNo", s.name, s.hostel, s.room, s.phone,
+       count(p.id) FILTER (WHERE p.status = 'RECEIVED') AS awaiting_pickup
+FROM students s
+LEFT JOIN parcels p ON p."studentId" = s.id
+WHERE s.name ILIKE '%Sharma%' OR s."enrollmentNo" ILIKE '%CS001%'
+GROUP BY s.id, s."enrollmentNo", s.name, s.hostel, s.room, s.phone
+ORDER BY s.name ASC
+LIMIT 20;
+
+-- @R7
+-- READ: Admin audit log — parcels logged by each guard/admin with received vs picked-up breakdown (LEFT JOIN)
+SELECT u.id AS user_id, u.name AS staff_name, u.email, u.role,
+       count(p.id) AS total_logged,
+       count(p.id) FILTER (WHERE p.status = 'RECEIVED')  AS currently_holding,
+       count(p.id) FILTER (WHERE p.status = 'PICKED_UP') AS handed_over
+FROM users u
+LEFT JOIN parcels p ON p."loggedById" = u.id
+GROUP BY u.id, u.name, u.email, u.role
+ORDER BY total_logged DESC;
+
+-- @R8
+-- READ: Hostel-wise parcel summary and average pickup turnaround time in hours (JOIN)
+SELECT s.hostel,
+       count(p.id) AS total_parcels,
+       count(p.id) FILTER (WHERE p.status = 'RECEIVED')  AS pending_pickup,
+       count(p.id) FILTER (WHERE p.status = 'PICKED_UP') AS completed_pickup,
+       round(avg(EXTRACT(EPOCH FROM (p."pickedUpAt" - p."createdAt")) / 3600.0)::numeric, 2) AS avg_pickup_hours
+FROM students s
+JOIN parcels p ON p."studentId" = s.id
+GROUP BY s.hostel
+ORDER BY total_parcels DESC;
+
 
 -- @END
 ROLLBACK;
