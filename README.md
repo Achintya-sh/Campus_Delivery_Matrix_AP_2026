@@ -16,3 +16,4 @@
 - `dbms/02_er_diagram.png`: Entity-Relationship (ER) Diagram
 - `dbms/03_schema.sql`: PostgreSQL `CREATE TABLE` DDL with keys, constraints, and indexes
 - `dbms/04_queries.sql`: 10 READ and 5 WRITE application SQL queries with JOINs (CP3)
+- `dbms/05_query_timings.md` & `dbms/plans/`: 3-run EXPLAIN (ANALYZE, BUFFERS) query timings and raw plans (CP4)
