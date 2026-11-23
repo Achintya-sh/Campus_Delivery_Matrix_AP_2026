@@ -1,0 +1,69 @@
+=== W1 run 1 ===
+Insert on parcels  (cost=0.29..16.37 rows=0 width=0) (actual time=0.189..0.190 rows=0.00 loops=1)
+  Buffers: shared hit=83 dirtied=4
+  ->  Subquery Scan on "*SELECT*"  (cost=0.29..16.37 rows=1 width=284) (actual time=0.036..0.036 rows=1.00 loops=1)
+        Buffers: shared hit=4
+        ->  Limit  (cost=0.29..16.35 rows=1 width=336) (actual time=0.023..0.024 rows=1.00 loops=1)
+              Buffers: shared hit=4
+              ->  Nested Loop  (cost=0.29..16.35 rows=1 width=336) (actual time=0.023..0.023 rows=1.00 loops=1)
+                    Buffers: shared hit=4
+                    ->  Index Scan using "students_enrollmentNo_idx" on students s  (cost=0.15..8.17 rows=1 width=64) (actual time=0.012..0.012 rows=1.00 loops=1)
+                          Index Cond: ("enrollmentNo" = 'RU2025CS001'::text)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+                    ->  Index Scan using users_email_key on users u  (cost=0.15..8.17 rows=1 width=32) (actual time=0.008..0.008 rows=1.00 loops=1)
+                          Index Cond: (email = 'guard1@campus.edu'::text)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=166
+Planning Time: 0.637 ms
+Trigger for constraint parcels_studentId_fkey: time=0.145 calls=1
+Trigger for constraint parcels_loggedById_fkey: time=0.629 calls=1
+Execution Time: 1.005 ms
+=== W1 run 2 ===
+Insert on parcels  (cost=0.29..16.37 rows=0 width=0) (actual time=0.767..0.768 rows=0.00 loops=1)
+  Buffers: shared hit=83
+  ->  Subquery Scan on "*SELECT*"  (cost=0.29..16.37 rows=1 width=284) (actual time=0.043..0.044 rows=1.00 loops=1)
+        Buffers: shared hit=4
+        ->  Limit  (cost=0.29..16.35 rows=1 width=336) (actual time=0.028..0.029 rows=1.00 loops=1)
+              Buffers: shared hit=4
+              ->  Nested Loop  (cost=0.29..16.35 rows=1 width=336) (actual time=0.027..0.027 rows=1.00 loops=1)
+                    Buffers: shared hit=4
+                    ->  Index Scan using "students_enrollmentNo_idx" on students s  (cost=0.15..8.17 rows=1 width=64) (actual time=0.015..0.015 rows=1.00 loops=1)
+                          Index Cond: ("enrollmentNo" = 'RU2025CS001'::text)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+                    ->  Index Scan using users_email_key on users u  (cost=0.15..8.17 rows=1 width=32) (actual time=0.009..0.009 rows=1.00 loops=1)
+                          Index Cond: (email = 'guard1@campus.edu'::text)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=166
+Planning Time: 0.758 ms
+Trigger for constraint parcels_studentId_fkey: time=0.168 calls=1
+Trigger for constraint parcels_loggedById_fkey: time=0.039 calls=1
+Execution Time: 1.024 ms
+=== W1 run 3 ===
+Insert on parcels  (cost=0.29..16.37 rows=0 width=0) (actual time=0.203..0.204 rows=0.00 loops=1)
+  Buffers: shared hit=83
+  ->  Subquery Scan on "*SELECT*"  (cost=0.29..16.37 rows=1 width=284) (actual time=0.039..0.040 rows=1.00 loops=1)
+        Buffers: shared hit=4
+        ->  Limit  (cost=0.29..16.35 rows=1 width=336) (actual time=0.025..0.026 rows=1.00 loops=1)
+              Buffers: shared hit=4
+              ->  Nested Loop  (cost=0.29..16.35 rows=1 width=336) (actual time=0.024..0.025 rows=1.00 loops=1)
+                    Buffers: shared hit=4
+                    ->  Index Scan using "students_enrollmentNo_idx" on students s  (cost=0.15..8.17 rows=1 width=64) (actual time=0.013..0.013 rows=1.00 loops=1)
+                          Index Cond: ("enrollmentNo" = 'RU2025CS001'::text)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+                    ->  Index Scan using users_email_key on users u  (cost=0.15..8.17 rows=1 width=32) (actual time=0.008..0.008 rows=1.00 loops=1)
+                          Index Cond: (email = 'guard1@campus.edu'::text)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=166
+Planning Time: 0.672 ms
+Trigger for constraint parcels_studentId_fkey: time=0.136 calls=1
+Trigger for constraint parcels_loggedById_fkey: time=0.036 calls=1
+Execution Time: 0.421 ms

@@ -1,0 +1,18 @@
+=== W3 run 1 ===
+Insert on students  (cost=0.00..0.02 rows=0 width=0) (actual time=0.744..0.745 rows=0.00 loops=1)
+  Buffers: shared hit=70 read=2 dirtied=4
+  ->  Result  (cost=0.00..0.02 rows=1 width=232) (actual time=0.016..0.017 rows=1.00 loops=1)
+Planning Time: 0.062 ms
+Execution Time: 0.783 ms
+=== W3 run 2 ===
+Insert on students  (cost=0.00..0.02 rows=0 width=0) (actual time=0.211..0.212 rows=0.00 loops=1)
+  Buffers: shared hit=74
+  ->  Result  (cost=0.00..0.02 rows=1 width=232) (actual time=0.016..0.017 rows=1.00 loops=1)
+Planning Time: 0.067 ms
+Execution Time: 0.253 ms
+=== W3 run 3 ===
+Insert on students  (cost=0.00..0.02 rows=0 width=0) (actual time=0.211..0.212 rows=0.00 loops=1)
+  Buffers: shared hit=74
+  ->  Result  (cost=0.00..0.02 rows=1 width=232) (actual time=0.013..0.013 rows=1.00 loops=1)
+Planning Time: 0.063 ms
+Execution Time: 0.252 ms

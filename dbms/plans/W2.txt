@@ -1,0 +1,33 @@
+=== W2 run 1 ===
+Update on parcels  (cost=0.15..8.18 rows=0 width=0) (actual time=0.012..0.012 rows=0.00 loops=1)
+  Buffers: shared hit=1
+  ->  Index Scan using "parcels_lookupNumber_idx" on parcels  (cost=0.15..8.18 rows=1 width=26) (actual time=0.011..0.011 rows=0.00 loops=1)
+        Index Cond: ("lookupNumber" = 'P-101'::text)
+        Index Searches: 1
+        Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=143
+Planning Time: 0.505 ms
+Execution Time: 1.485 ms
+=== W2 run 2 ===
+Update on parcels  (cost=0.15..8.18 rows=0 width=0) (actual time=0.012..0.013 rows=0.00 loops=1)
+  Buffers: shared hit=1
+  ->  Index Scan using "parcels_lookupNumber_idx" on parcels  (cost=0.15..8.18 rows=1 width=26) (actual time=0.011..0.012 rows=0.00 loops=1)
+        Index Cond: ("lookupNumber" = 'P-101'::text)
+        Index Searches: 1
+        Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=143
+Planning Time: 0.540 ms
+Execution Time: 0.116 ms
+=== W2 run 3 ===
+Update on parcels  (cost=0.15..8.18 rows=0 width=0) (actual time=0.012..0.013 rows=0.00 loops=1)
+  Buffers: shared hit=1
+  ->  Index Scan using "parcels_lookupNumber_idx" on parcels  (cost=0.15..8.18 rows=1 width=26) (actual time=0.011..0.012 rows=0.00 loops=1)
+        Index Cond: ("lookupNumber" = 'P-101'::text)
+        Index Searches: 1
+        Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=143
+Planning Time: 0.587 ms
+Execution Time: 0.118 ms

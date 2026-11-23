@@ -1,0 +1,33 @@
+=== W4 run 1 ===
+Update on students  (cost=0.15..8.17 rows=0 width=0) (actual time=0.117..0.117 rows=0.00 loops=1)
+  Buffers: shared hit=9
+  ->  Index Scan using "students_enrollmentNo_idx" on students  (cost=0.15..8.17 rows=1 width=102) (actual time=0.023..0.024 rows=1.00 loops=1)
+        Index Cond: ("enrollmentNo" = 'RU2025CS002'::text)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=116
+Planning Time: 0.503 ms
+Execution Time: 0.219 ms
+=== W4 run 2 ===
+Update on students  (cost=0.15..8.17 rows=0 width=0) (actual time=0.090..0.091 rows=0.00 loops=1)
+  Buffers: shared hit=9
+  ->  Index Scan using "students_enrollmentNo_idx" on students  (cost=0.15..8.17 rows=1 width=102) (actual time=0.021..0.022 rows=1.00 loops=1)
+        Index Cond: ("enrollmentNo" = 'RU2025CS002'::text)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=116
+Planning Time: 0.497 ms
+Execution Time: 0.190 ms
+=== W4 run 3 ===
+Update on students  (cost=0.15..8.17 rows=0 width=0) (actual time=0.091..0.091 rows=0.00 loops=1)
+  Buffers: shared hit=9
+  ->  Index Scan using "students_enrollmentNo_idx" on students  (cost=0.15..8.17 rows=1 width=102) (actual time=0.021..0.022 rows=1.00 loops=1)
+        Index Cond: ("enrollmentNo" = 'RU2025CS002'::text)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=116
+Planning Time: 0.495 ms
+Execution Time: 0.187 ms
