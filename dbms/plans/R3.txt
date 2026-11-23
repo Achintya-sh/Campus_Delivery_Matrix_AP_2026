@@ -1,0 +1,57 @@
+=== R3 run 1 ===
+Nested Loop  (cost=0.44..24.58 rows=1 width=376) (actual time=0.009..0.009 rows=0.00 loops=1)
+  Buffers: shared hit=1
+  ->  Nested Loop  (cost=0.29..16.38 rows=1 width=372) (actual time=0.009..0.009 rows=0.00 loops=1)
+        Buffers: shared hit=1
+        ->  Index Scan using "parcels_lookupNumber_idx" on parcels p  (cost=0.15..8.17 rows=1 width=244) (actual time=0.009..0.009 rows=0.00 loops=1)
+              Index Cond: ("lookupNumber" = 'P-101'::text)
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Scan using students_pkey on students s  (cost=0.15..8.17 rows=1 width=192) (never executed)
+              Index Cond: (id = p."studentId")
+              Index Searches: 0
+  ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=68) (never executed)
+        Index Cond: (id = p."loggedById")
+        Index Searches: 0
+Planning:
+  Buffers: shared hit=388
+Planning Time: 1.059 ms
+Execution Time: 0.052 ms
+=== R3 run 2 ===
+Nested Loop  (cost=0.44..24.58 rows=1 width=376) (actual time=0.012..0.013 rows=0.00 loops=1)
+  Buffers: shared hit=1
+  ->  Nested Loop  (cost=0.29..16.38 rows=1 width=372) (actual time=0.012..0.012 rows=0.00 loops=1)
+        Buffers: shared hit=1
+        ->  Index Scan using "parcels_lookupNumber_idx" on parcels p  (cost=0.15..8.17 rows=1 width=244) (actual time=0.012..0.012 rows=0.00 loops=1)
+              Index Cond: ("lookupNumber" = 'P-101'::text)
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Scan using students_pkey on students s  (cost=0.15..8.17 rows=1 width=192) (never executed)
+              Index Cond: (id = p."studentId")
+              Index Searches: 0
+  ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=68) (never executed)
+        Index Cond: (id = p."loggedById")
+        Index Searches: 0
+Planning:
+  Buffers: shared hit=388
+Planning Time: 1.193 ms
+Execution Time: 0.063 ms
+=== R3 run 3 ===
+Nested Loop  (cost=0.44..24.58 rows=1 width=376) (actual time=0.009..0.010 rows=0.00 loops=1)
+  Buffers: shared hit=1
+  ->  Nested Loop  (cost=0.29..16.38 rows=1 width=372) (actual time=0.009..0.010 rows=0.00 loops=1)
+        Buffers: shared hit=1
+        ->  Index Scan using "parcels_lookupNumber_idx" on parcels p  (cost=0.15..8.17 rows=1 width=244) (actual time=0.009..0.009 rows=0.00 loops=1)
+              Index Cond: ("lookupNumber" = 'P-101'::text)
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Scan using students_pkey on students s  (cost=0.15..8.17 rows=1 width=192) (never executed)
+              Index Cond: (id = p."studentId")
+              Index Searches: 0
+  ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=68) (never executed)
+        Index Cond: (id = p."loggedById")
+        Index Searches: 0
+Planning:
+  Buffers: shared hit=388
+Planning Time: 1.128 ms
+Execution Time: 0.057 ms

@@ -122,20 +122,24 @@ INSERT INTO parcels (
     id, "lookupNumber", carrier, "trackingNumber", status, notes,
     "studentId", "studentEnrollmentNo", "loggedById", "pickedUpAt", "createdAt", "updatedAt"
 )
-VALUES (
+SELECT
     '99999999-5346-4ee7-9b5f-417b4bfdec1f',
     'P-999',
     'BlueDart',
     'BD-2026-88412',
     'RECEIVED',
     'Fragile electronics box at Gate 1',
-    '796c9cda-258e-4823-8d18-88ebbcf2902c',
-    'RU2025CS001',
-    '15a905d0-f3da-439d-9de9-46bc7ecf36da',
+    s.id,
+    s."enrollmentNo",
+    u.id,
     NULL,
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
-);
+FROM students s
+CROSS JOIN users u
+WHERE s."enrollmentNo" = 'RU2025CS001'
+  AND u.email = 'guard1@campus.edu'
+LIMIT 1;
 
 -- @W2
 -- WRITE: Guard marks a parcel as PICKED_UP when the student presents their lookupNumber
@@ -174,7 +178,7 @@ WHERE "enrollmentNo" = 'RU2025CS002';
 UPDATE parcels
 SET notes       = 'Moved to Rack B-2 (Heavy parcel shelf)',
     "updatedAt" = CURRENT_TIMESTAMP
-WHERE id = 'f82f0378-5346-4ee7-9b5f-417b4bfdec1f';
+WHERE "lookupNumber" = 'P-101';
 
 -- @END
 ROLLBACK;

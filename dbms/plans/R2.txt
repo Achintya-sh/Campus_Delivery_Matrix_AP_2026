@@ -1,0 +1,57 @@
+=== R2 run 1 ===
+GroupAggregate  (cost=8.18..21.49 rows=1 width=240) (actual time=0.039..0.040 rows=1.00 loops=1)
+  Buffers: shared hit=3 dirtied=1
+  ->  Hash Right Join  (cost=8.18..21.47 rows=1 width=260) (actual time=0.031..0.034 rows=1.00 loops=1)
+        Hash Cond: (p."studentId" = s.id)
+        Buffers: shared hit=3 dirtied=1
+        ->  Seq Scan on parcels p  (cost=0.00..12.60 rows=260 width=68) (actual time=0.012..0.012 rows=0.00 loops=1)
+              Buffers: shared hit=1 dirtied=1
+        ->  Hash  (cost=8.17..8.17 rows=1 width=224) (actual time=0.012..0.012 rows=1.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=2
+              ->  Index Scan using "students_enrollmentNo_idx" on students s  (cost=0.15..8.17 rows=1 width=224) (actual time=0.009..0.009 rows=1.00 loops=1)
+                    Index Cond: ("enrollmentNo" = 'RU2025CS001'::text)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=252
+Planning Time: 0.912 ms
+Execution Time: 0.095 ms
+=== R2 run 2 ===
+GroupAggregate  (cost=8.18..21.49 rows=1 width=240) (actual time=0.033..0.034 rows=1.00 loops=1)
+  Buffers: shared hit=3
+  ->  Hash Right Join  (cost=8.18..21.47 rows=1 width=260) (actual time=0.025..0.028 rows=1.00 loops=1)
+        Hash Cond: (p."studentId" = s.id)
+        Buffers: shared hit=3
+        ->  Seq Scan on parcels p  (cost=0.00..12.60 rows=260 width=68) (actual time=0.004..0.004 rows=0.00 loops=1)
+              Buffers: shared hit=1
+        ->  Hash  (cost=8.17..8.17 rows=1 width=224) (actual time=0.013..0.013 rows=1.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=2
+              ->  Index Scan using "students_enrollmentNo_idx" on students s  (cost=0.15..8.17 rows=1 width=224) (actual time=0.010..0.010 rows=1.00 loops=1)
+                    Index Cond: ("enrollmentNo" = 'RU2025CS001'::text)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=252
+Planning Time: 0.782 ms
+Execution Time: 0.094 ms
+=== R2 run 3 ===
+GroupAggregate  (cost=8.18..21.49 rows=1 width=240) (actual time=0.031..0.032 rows=1.00 loops=1)
+  Buffers: shared hit=3
+  ->  Hash Right Join  (cost=8.18..21.47 rows=1 width=260) (actual time=0.024..0.026 rows=1.00 loops=1)
+        Hash Cond: (p."studentId" = s.id)
+        Buffers: shared hit=3
+        ->  Seq Scan on parcels p  (cost=0.00..12.60 rows=260 width=68) (actual time=0.004..0.004 rows=0.00 loops=1)
+              Buffers: shared hit=1
+        ->  Hash  (cost=8.17..8.17 rows=1 width=224) (actual time=0.012..0.012 rows=1.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=2
+              ->  Index Scan using "students_enrollmentNo_idx" on students s  (cost=0.15..8.17 rows=1 width=224) (actual time=0.009..0.009 rows=1.00 loops=1)
+                    Index Cond: ("enrollmentNo" = 'RU2025CS001'::text)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=252
+Planning Time: 0.773 ms
+Execution Time: 0.088 ms

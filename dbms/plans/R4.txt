@@ -1,0 +1,75 @@
+=== R4 run 1 ===
+Limit  (cost=24.59..24.60 rows=1 width=332) (actual time=0.029..0.030 rows=0.00 loops=1)
+  Buffers: shared hit=6 dirtied=1
+  ->  Sort  (cost=24.59..24.60 rows=1 width=332) (actual time=0.028..0.029 rows=0.00 loops=1)
+        Sort Key: p."createdAt"
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=6 dirtied=1
+        ->  Nested Loop  (cost=0.44..24.58 rows=1 width=332) (actual time=0.016..0.016 rows=0.00 loops=1)
+              Buffers: shared hit=3 dirtied=1
+              ->  Nested Loop  (cost=0.29..16.38 rows=1 width=332) (actual time=0.016..0.016 rows=0.00 loops=1)
+                    Buffers: shared hit=3 dirtied=1
+                    ->  Index Scan using parcels_status_idx on parcels p  (cost=0.15..8.17 rows=1 width=204) (actual time=0.015..0.015 rows=0.00 loops=1)
+                          Index Cond: (status = 'RECEIVED'::"ParcelStatus")
+                          Index Searches: 1
+                          Buffers: shared hit=3 dirtied=1
+                    ->  Index Scan using students_pkey on students s  (cost=0.15..8.17 rows=1 width=192) (never executed)
+                          Index Cond: (id = p."studentId")
+                          Index Searches: 0
+              ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=64) (never executed)
+                    Index Cond: (id = p."loggedById")
+                    Index Searches: 0
+Planning:
+  Buffers: shared hit=377
+Planning Time: 1.005 ms
+Execution Time: 0.067 ms
+=== R4 run 2 ===
+Limit  (cost=24.59..24.60 rows=1 width=332) (actual time=0.022..0.023 rows=0.00 loops=1)
+  Buffers: shared hit=4
+  ->  Sort  (cost=24.59..24.60 rows=1 width=332) (actual time=0.021..0.022 rows=0.00 loops=1)
+        Sort Key: p."createdAt"
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=4
+        ->  Nested Loop  (cost=0.44..24.58 rows=1 width=332) (actual time=0.007..0.008 rows=0.00 loops=1)
+              Buffers: shared hit=1
+              ->  Nested Loop  (cost=0.29..16.38 rows=1 width=332) (actual time=0.007..0.008 rows=0.00 loops=1)
+                    Buffers: shared hit=1
+                    ->  Index Scan using parcels_status_idx on parcels p  (cost=0.15..8.17 rows=1 width=204) (actual time=0.007..0.007 rows=0.00 loops=1)
+                          Index Cond: (status = 'RECEIVED'::"ParcelStatus")
+                          Index Searches: 1
+                          Buffers: shared hit=1
+                    ->  Index Scan using students_pkey on students s  (cost=0.15..8.17 rows=1 width=192) (never executed)
+                          Index Cond: (id = p."studentId")
+                          Index Searches: 0
+              ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=64) (never executed)
+                    Index Cond: (id = p."loggedById")
+                    Index Searches: 0
+Planning:
+  Buffers: shared hit=377
+Planning Time: 1.198 ms
+Execution Time: 0.064 ms
+=== R4 run 3 ===
+Limit  (cost=24.59..24.60 rows=1 width=332) (actual time=0.024..0.025 rows=0.00 loops=1)
+  Buffers: shared hit=4
+  ->  Sort  (cost=24.59..24.60 rows=1 width=332) (actual time=0.023..0.024 rows=0.00 loops=1)
+        Sort Key: p."createdAt"
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=4
+        ->  Nested Loop  (cost=0.44..24.58 rows=1 width=332) (actual time=0.008..0.008 rows=0.00 loops=1)
+              Buffers: shared hit=1
+              ->  Nested Loop  (cost=0.29..16.38 rows=1 width=332) (actual time=0.008..0.008 rows=0.00 loops=1)
+                    Buffers: shared hit=1
+                    ->  Index Scan using parcels_status_idx on parcels p  (cost=0.15..8.17 rows=1 width=204) (actual time=0.007..0.007 rows=0.00 loops=1)
+                          Index Cond: (status = 'RECEIVED'::"ParcelStatus")
+                          Index Searches: 1
+                          Buffers: shared hit=1
+                    ->  Index Scan using students_pkey on students s  (cost=0.15..8.17 rows=1 width=192) (never executed)
+                          Index Cond: (id = p."studentId")
+                          Index Searches: 0
+              ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=64) (never executed)
+                    Index Cond: (id = p."loggedById")
+                    Index Searches: 0
+Planning:
+  Buffers: shared hit=377
+Planning Time: 1.158 ms
+Execution Time: 0.072 ms
