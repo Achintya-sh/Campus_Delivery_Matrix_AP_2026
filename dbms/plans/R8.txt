@@ -1,0 +1,60 @@
+=== R8 run 1 ===
+Sort  (cost=47.41..47.91 rows=200 width=88) (actual time=0.015..0.016 rows=0.00 loops=1)
+  Sort Key: (count(p.id)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=4
+  ->  HashAggregate  (cost=36.77..39.77 rows=200 width=88) (actual time=0.007..0.007 rows=0.00 loops=1)
+        Group Key: s.hostel
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=1
+        ->  Hash Join  (cost=16.98..30.27 rows=260 width=84) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Hash Cond: (p."studentId" = s.id)
+              Buffers: shared hit=1
+              ->  Seq Scan on parcels p  (cost=0.00..12.60 rows=260 width=84) (actual time=0.004..0.004 rows=0.00 loops=1)
+                    Buffers: shared hit=1
+              ->  Hash  (cost=13.10..13.10 rows=310 width=64) (never executed)
+                    ->  Seq Scan on students s  (cost=0.00..13.10 rows=310 width=64) (never executed)
+Planning:
+  Buffers: shared hit=273
+Planning Time: 0.954 ms
+Execution Time: 0.102 ms
+=== R8 run 2 ===
+Sort  (cost=47.41..47.91 rows=200 width=88) (actual time=0.019..0.020 rows=0.00 loops=1)
+  Sort Key: (count(p.id)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=4
+  ->  HashAggregate  (cost=36.77..39.77 rows=200 width=88) (actual time=0.009..0.009 rows=0.00 loops=1)
+        Group Key: s.hostel
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=1
+        ->  Hash Join  (cost=16.98..30.27 rows=260 width=84) (actual time=0.006..0.007 rows=0.00 loops=1)
+              Hash Cond: (p."studentId" = s.id)
+              Buffers: shared hit=1
+              ->  Seq Scan on parcels p  (cost=0.00..12.60 rows=260 width=84) (actual time=0.005..0.005 rows=0.00 loops=1)
+                    Buffers: shared hit=1
+              ->  Hash  (cost=13.10..13.10 rows=310 width=64) (never executed)
+                    ->  Seq Scan on students s  (cost=0.00..13.10 rows=310 width=64) (never executed)
+Planning:
+  Buffers: shared hit=273
+Planning Time: 0.952 ms
+Execution Time: 0.097 ms
+=== R8 run 3 ===
+Sort  (cost=47.41..47.91 rows=200 width=88) (actual time=0.019..0.020 rows=0.00 loops=1)
+  Sort Key: (count(p.id)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=4
+  ->  HashAggregate  (cost=36.77..39.77 rows=200 width=88) (actual time=0.010..0.010 rows=0.00 loops=1)
+        Group Key: s.hostel
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=1
+        ->  Hash Join  (cost=16.98..30.27 rows=260 width=84) (actual time=0.007..0.008 rows=0.00 loops=1)
+              Hash Cond: (p."studentId" = s.id)
+              Buffers: shared hit=1
+              ->  Seq Scan on parcels p  (cost=0.00..12.60 rows=260 width=84) (actual time=0.006..0.007 rows=0.00 loops=1)
+                    Buffers: shared hit=1
+              ->  Hash  (cost=13.10..13.10 rows=310 width=64) (never executed)
+                    ->  Seq Scan on students s  (cost=0.00..13.10 rows=310 width=64) (never executed)
+Planning:
+  Buffers: shared hit=273
+Planning Time: 0.923 ms
+Execution Time: 0.099 ms

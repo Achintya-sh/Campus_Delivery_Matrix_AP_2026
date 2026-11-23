@@ -1,0 +1,72 @@
+=== R9 run 1 ===
+Sort  (cost=24.60..24.60 rows=1 width=328) (actual time=0.020..0.021 rows=0.00 loops=1)
+  Sort Key: p."createdAt"
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=4
+  ->  Nested Loop  (cost=0.44..24.59 rows=1 width=328) (actual time=0.009..0.009 rows=0.00 loops=1)
+        Buffers: shared hit=1
+        ->  Nested Loop  (cost=0.29..16.39 rows=1 width=328) (actual time=0.009..0.009 rows=0.00 loops=1)
+              Buffers: shared hit=1
+              ->  Index Scan using parcels_status_idx on parcels p  (cost=0.15..8.17 rows=1 width=168) (actual time=0.008..0.008 rows=0.00 loops=1)
+                    Index Cond: (status = 'RECEIVED'::"ParcelStatus")
+                    Filter: ("createdAt" < (CURRENT_TIMESTAMP - '48:00:00'::interval))
+                    Index Searches: 1
+                    Buffers: shared hit=1
+              ->  Index Scan using students_pkey on students s  (cost=0.15..8.17 rows=1 width=224) (never executed)
+                    Index Cond: (id = p."studentId")
+                    Index Searches: 0
+        ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=64) (never executed)
+              Index Cond: (id = p."loggedById")
+              Index Searches: 0
+Planning:
+  Buffers: shared hit=380
+Planning Time: 1.251 ms
+Execution Time: 0.066 ms
+=== R9 run 2 ===
+Sort  (cost=24.60..24.60 rows=1 width=328) (actual time=0.019..0.020 rows=0.00 loops=1)
+  Sort Key: p."createdAt"
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=4
+  ->  Nested Loop  (cost=0.44..24.59 rows=1 width=328) (actual time=0.008..0.009 rows=0.00 loops=1)
+        Buffers: shared hit=1
+        ->  Nested Loop  (cost=0.29..16.39 rows=1 width=328) (actual time=0.008..0.008 rows=0.00 loops=1)
+              Buffers: shared hit=1
+              ->  Index Scan using parcels_status_idx on parcels p  (cost=0.15..8.17 rows=1 width=168) (actual time=0.007..0.008 rows=0.00 loops=1)
+                    Index Cond: (status = 'RECEIVED'::"ParcelStatus")
+                    Filter: ("createdAt" < (CURRENT_TIMESTAMP - '48:00:00'::interval))
+                    Index Searches: 1
+                    Buffers: shared hit=1
+              ->  Index Scan using students_pkey on students s  (cost=0.15..8.17 rows=1 width=224) (never executed)
+                    Index Cond: (id = p."studentId")
+                    Index Searches: 0
+        ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=64) (never executed)
+              Index Cond: (id = p."loggedById")
+              Index Searches: 0
+Planning:
+  Buffers: shared hit=380
+Planning Time: 1.216 ms
+Execution Time: 0.065 ms
+=== R9 run 3 ===
+Sort  (cost=24.60..24.60 rows=1 width=328) (actual time=0.019..0.019 rows=0.00 loops=1)
+  Sort Key: p."createdAt"
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=4
+  ->  Nested Loop  (cost=0.44..24.59 rows=1 width=328) (actual time=0.008..0.009 rows=0.00 loops=1)
+        Buffers: shared hit=1
+        ->  Nested Loop  (cost=0.29..16.39 rows=1 width=328) (actual time=0.008..0.009 rows=0.00 loops=1)
+              Buffers: shared hit=1
+              ->  Index Scan using parcels_status_idx on parcels p  (cost=0.15..8.17 rows=1 width=168) (actual time=0.008..0.008 rows=0.00 loops=1)
+                    Index Cond: (status = 'RECEIVED'::"ParcelStatus")
+                    Filter: ("createdAt" < (CURRENT_TIMESTAMP - '48:00:00'::interval))
+                    Index Searches: 1
+                    Buffers: shared hit=1
+              ->  Index Scan using students_pkey on students s  (cost=0.15..8.17 rows=1 width=224) (never executed)
+                    Index Cond: (id = p."studentId")
+                    Index Searches: 0
+        ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=64) (never executed)
+              Index Cond: (id = p."loggedById")
+              Index Searches: 0
+Planning:
+  Buffers: shared hit=380
+Planning Time: 1.157 ms
+Execution Time: 0.062 ms

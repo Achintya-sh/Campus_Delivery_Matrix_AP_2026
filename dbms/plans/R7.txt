@@ -1,0 +1,69 @@
+=== R7 run 1 ===
+Sort  (cost=65.49..66.64 rows=460 width=124) (actual time=0.042..0.043 rows=3.00 loops=1)
+  Sort Key: (count(p.id)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5
+  ->  HashAggregate  (cost=40.54..45.14 rows=460 width=124) (actual time=0.029..0.033 rows=3.00 loops=1)
+        Group Key: u.email
+        Batches: 1  Memory Usage: 48kB
+        Buffers: shared hit=2
+        ->  Hash Right Join  (cost=20.35..33.64 rows=460 width=136) (actual time=0.021..0.024 rows=3.00 loops=1)
+              Hash Cond: (p."loggedById" = u.id)
+              Buffers: shared hit=2
+              ->  Seq Scan on parcels p  (cost=0.00..12.60 rows=260 width=68) (actual time=0.004..0.004 rows=0.00 loops=1)
+                    Buffers: shared hit=1
+              ->  Hash  (cost=14.60..14.60 rows=460 width=100) (actual time=0.009..0.009 rows=3.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on users u  (cost=0.00..14.60 rows=460 width=100) (actual time=0.005..0.006 rows=3.00 loops=1)
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=237
+Planning Time: 0.693 ms
+Execution Time: 0.112 ms
+=== R7 run 2 ===
+Sort  (cost=65.49..66.64 rows=460 width=124) (actual time=0.040..0.041 rows=3.00 loops=1)
+  Sort Key: (count(p.id)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5
+  ->  HashAggregate  (cost=40.54..45.14 rows=460 width=124) (actual time=0.028..0.032 rows=3.00 loops=1)
+        Group Key: u.email
+        Batches: 1  Memory Usage: 48kB
+        Buffers: shared hit=2
+        ->  Hash Right Join  (cost=20.35..33.64 rows=460 width=136) (actual time=0.020..0.024 rows=3.00 loops=1)
+              Hash Cond: (p."loggedById" = u.id)
+              Buffers: shared hit=2
+              ->  Seq Scan on parcels p  (cost=0.00..12.60 rows=260 width=68) (actual time=0.004..0.004 rows=0.00 loops=1)
+                    Buffers: shared hit=1
+              ->  Hash  (cost=14.60..14.60 rows=460 width=100) (actual time=0.009..0.009 rows=3.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on users u  (cost=0.00..14.60 rows=460 width=100) (actual time=0.005..0.006 rows=3.00 loops=1)
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=237
+Planning Time: 0.720 ms
+Execution Time: 0.111 ms
+=== R7 run 3 ===
+Sort  (cost=65.49..66.64 rows=460 width=124) (actual time=0.041..0.042 rows=3.00 loops=1)
+  Sort Key: (count(p.id)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5
+  ->  HashAggregate  (cost=40.54..45.14 rows=460 width=124) (actual time=0.028..0.031 rows=3.00 loops=1)
+        Group Key: u.email
+        Batches: 1  Memory Usage: 48kB
+        Buffers: shared hit=2
+        ->  Hash Right Join  (cost=20.35..33.64 rows=460 width=136) (actual time=0.020..0.023 rows=3.00 loops=1)
+              Hash Cond: (p."loggedById" = u.id)
+              Buffers: shared hit=2
+              ->  Seq Scan on parcels p  (cost=0.00..12.60 rows=260 width=68) (actual time=0.003..0.003 rows=0.00 loops=1)
+                    Buffers: shared hit=1
+              ->  Hash  (cost=14.60..14.60 rows=460 width=100) (actual time=0.009..0.009 rows=3.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on users u  (cost=0.00..14.60 rows=460 width=100) (actual time=0.005..0.005 rows=3.00 loops=1)
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=237
+Planning Time: 0.715 ms
+Execution Time: 0.111 ms
